@@ -8,7 +8,7 @@ import { GroupData } from "../sonos/group";
 const ApiService = {
 
     async getHousholds(): Promise<households> {
-        AuthService.refreshToken();
+        await AuthService.refreshToken();
         const householdObj = await genericSonosRequest({
             url: '/control/api/v1/households',
             method: "GET",
@@ -18,7 +18,7 @@ const ApiService = {
     },
 
     async getGroups(household: string): Promise<GroupData> {
-        AuthService.refreshToken();
+        await AuthService.refreshToken();
         const resp = await genericSonosRequest({
             url: `/control/api/v1/households/${household}/groups`,
             method: "GET",
@@ -30,7 +30,7 @@ const ApiService = {
     },
 
     async setPlaybackState(household: string, groupId: string, state: string) {
-        AuthService.refreshToken();
+        await AuthService.refreshToken();
         const resp = await genericSonosRequest({
             url: `/control/api/v1/households/${household}/groups/${groupId}/playback/${state}`,
             method: "POST",
@@ -41,7 +41,7 @@ const ApiService = {
     },
 
     async getGroupMetadata(groupId: string) {
-        AuthService.refreshToken();
+        await AuthService.refreshToken();
         const resp = await genericSonosRequest({
             url: `/control/api/v1/groups/${groupId}/playbackMetadata`,
             method: "GET",
