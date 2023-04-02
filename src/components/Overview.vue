@@ -22,14 +22,8 @@ export default {
       await this.loadGroups();
     } else {
       try {
-        const households = (await ApiService.getHousholds()).households
-        if (households.length != 0) {
-          this.selectedHousehold = households[0].id
-          localStorage.setItem('selectedHousehold', this.selectedHousehold)
-          await this.loadGroups();
-        } else {
-          this.selectedHousehold = 'No household found'
-        }
+        await this.getHousehold();
+        await this.loadGroups();
       } catch (err) {
         console.error('An error occurred while getting households', err)
       }
@@ -37,11 +31,21 @@ export default {
   },
   methods: {
     async loadGroups() {
-
       this.loading = true;
-      const groupObj = await ApiService.getGroups(this.selectedHousehold)
-      this.groups = groupObj.groups
+      if (this.selectedHousehold === '') {
+        await this.getHousehold();
+      } else {
+        const groupObj = await ApiService.getGroups(this.selectedHousehold)
+        this.groups = groupObj.groups
+      }
       this.loading = false;
+    },
+    async getHousehold() {
+      const households = (await ApiService.getHousholds()).households
+      if (households.length != 0) {
+        this.selectedHousehold = households[0].id
+        localStorage.setItem('selectedHousehold', this.selectedHousehold)
+      }
     },
     visibilityChange(e) {
       if (document.visibilityState === 'visible') {
@@ -64,6 +68,9 @@ export default {
       <div v-else>
         <SonosGroup v-for="group in this.groups" :key="group.id" :group="group"
           :selectedHoushold="this.selectedHousehold" />
+        <div v-if="!this.groups.length" class="m-6">
+          No Sonos speakers found
+        </div>
         <button @click="loadGroups()"
           class="h-10 px-6 font-semibold rounded-full bg-violet-600 hover:bg-violet-500 active:bg-violet-700 text-white shadow-md"
           type="button">Refresh Groups</button>
