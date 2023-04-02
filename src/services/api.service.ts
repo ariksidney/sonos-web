@@ -51,6 +51,18 @@ const ApiService = {
         return resp;
     },
 
+    async setRelativeVolume(groupId: string, volumeDelta: number) {
+        await AuthService.refreshToken();
+        const resp = await genericSonosRequest({
+            url: `/control/api/v1/groups/${groupId}/groupVolume/relative`,
+            method: "POST",
+            body: `{"volumeDelta": ${volumeDelta}}`,
+            accessToken: TokenService.getToken(),
+        })
+        this.validateResponse(resp);
+        return resp;
+    },
+
     validateResponse(response: object) {
         if (response['data']['fault']) {
             AuthService.signOut();
