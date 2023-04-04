@@ -10,6 +10,8 @@ A quickly hacked together webapp to control your Sonos system from anywhere - no
 * List your Groups
 * Pause/Play existing queue
 * Skip to next track
+* Change volume
+* List and play Sonos favorites
 
 All the rest is (not yet) implemented.
 

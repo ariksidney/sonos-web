@@ -6,6 +6,7 @@ import SignIn from "./components/SignIn.vue";
 import Overview from "./components/Overview.vue";
 import Settings from './components/Settings.vue';
 import About from './components/About.vue';
+import Favorites from './components/Favorites.vue';
 import AuthService from './services/auth.service';
 
 const routes = [
@@ -13,6 +14,7 @@ const routes = [
     { path: "/SignIn", component: SignIn },
     { path: "/Settings", component: Settings },
     { path: "/about", component: About },
+    { path: "/favorites", component: Favorites },
   ];
 
 const router = createRouter({

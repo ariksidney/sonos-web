@@ -3,6 +3,7 @@ import AuthService from "./auth.service";
 import { genericSonosRequest } from "./firebase.service";
 import { households } from "../sonos/household";
 import { GroupData } from "../sonos/group";
+import { favoritesList } from "../sonos/favorites";
 
 
 const ApiService = {
@@ -61,6 +62,35 @@ const ApiService = {
         })
         this.validateResponse(resp);
         return resp;
+    },
+
+    async getFavorites(householdId: string): Promise<favoritesList> {
+        await AuthService.refreshToken();
+        const resp = await genericSonosRequest({
+            url: `/control/api/v1/households/${householdId}/favorites`,
+            method: "GET",
+            accessToken: TokenService.getToken(),
+        })
+        this.validateResponse(resp);
+        return <favoritesList>resp.data;
+    },
+
+    async playFavorite(groupId: string, favoriteId: number) {
+        await AuthService.refreshToken();
+        const resp = await genericSonosRequest({
+            url: `/control/api/v1/groups/${groupId}/favorites`,
+            method: "POST",
+            body: `{
+                "favoriteId": "${favoriteId}",
+                "playOnCompletion": true,
+                "queueAction": "replace",
+                "playModes": {
+                    "shuffle": false
+                }
+            }`,
+            accessToken: TokenService.getToken(),
+        })
+        this.validateResponse(resp);
     },
 
     validateResponse(response: object) {
