@@ -15,8 +15,8 @@ export default defineConfig({
       manifest: {
         "name": "Sonos Web",
         "short_name": "Sonos",
-        "theme_color": "#0f172a",
-        "background_color": "#0f172a",
+        "theme_color": "#111729",
+        "background_color": "#111729",
         "display": "standalone",
         "scope": "/",
         "start_url": "/",
