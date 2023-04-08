@@ -11,7 +11,35 @@ export default defineConfig({
       devOptions: {
         enabled: true
       },
-      injectRegister: 'inline'
+      injectRegister: 'inline',
+      manifest: {
+        "name": "Sonos Web",
+        "short_name": "Sonos",
+        "theme_color": "#0f172a",
+        "background_color": "#0f172a",
+        "display": "standalone",
+        "scope": "/",
+        "start_url": "/",
+        "icons": [
+          {
+            "src": "/SonosWeb192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+          },
+          {
+            "src": "/SonosWeb512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+          },
+          {
+            "src": "/maskable_icon.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+          }
+        ]
+      }
+      
     })
   ],
   server: {
