@@ -16,6 +16,9 @@ export default {
       loading: false,
     }
   },
+  created() {
+    window.addEventListener("visibilitychange", this.loadOnVisible)
+  },
   async mounted() {
     if (localStorage.getItem('selectedHousehold') != null) {
       this.selectedHousehold = localStorage.getItem('selectedHousehold') || '';
@@ -30,6 +33,11 @@ export default {
     }
   },
   methods: {
+    async loadOnVisible() {
+      if (document.visibilityState === "visible") {
+        await this.loadGroups()
+      }
+    },
     async loadGroups() {
       this.loading = true;
       if (this.selectedHousehold === '') {
@@ -47,12 +55,6 @@ export default {
         localStorage.setItem('selectedHousehold', this.selectedHousehold)
       }
     },
-    visibilityChange(e) {
-      if (document.visibilityState === 'visible') {
-        console.log('visible!', document.visibilityState);
-        this.loadGroups();
-      }
-    }
   },
 }
 
