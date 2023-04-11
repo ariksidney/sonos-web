@@ -4,16 +4,16 @@
         <div>
             <h1>Sonos Web</h1>
         </div>
-        <div class="hover:text-violet-500 dark:hover:text-violet-400">
+        <div class="hover:text-violet-500 dark:hover:text-violet-400 pb-1">
             <button @click="overview()">Overview</button>
         </div>
-        <div class="hover:text-violet-500 dark:hover:text-violet-400">
+        <div class="hover:text-violet-500 dark:hover:text-violet-400 pb-1">
             <button @click="favorites()">Favorites</button>
         </div>
-        <div class="hover:text-violet-500 dark:hover:text-violet-400">
+        <div class="hover:text-violet-500 dark:hover:text-violet-400 pb-1">
             <button @click="about()">About</button>
         </div>
-        <div class="hover:text-violet-500 dark:hover:text-violet-400">
+        <div class="hover:text-violet-500 dark:hover:text-violet-400 pb-1">
             <button @click="logout()">Logout</button>
         </div>
     </aside>
@@ -32,10 +32,10 @@
         </div>
         <div class="hidden mobile-menu mb-7 mt-3">
             <div class="flex flex-col gap-2 w-full">
-                <button class="hover:text-violet-500 dark:hover:text-violet-400" @click="overview()">Overview</button>
-                <button class="hover:text-violet-500 dark:hover:text-violet-400" @click="favorites()">Favorites</button>
-                <button class="hover:text-violet-500 dark:hover:text-violet-400" @click="about()">About</button>
-                <button class="hover:text-violet-500 dark:hover:text-violet-400" @click="logout()">Logout</button>
+                <button class="hover:text-violet-500 dark:hover:text-violet-400 pb-1" @click="overview()">Overview</button>
+                <button class="hover:text-violet-500 dark:hover:text-violet-400 pb-1" @click="favorites()">Favorites</button>
+                <button class="hover:text-violet-500 dark:hover:text-violet-400 pb-1" @click="about()">About</button>
+                <button class="hover:text-violet-500 dark:hover:text-violet-400 pb-1" @click="logout()">Logout</button>
             </div>
         </div>
 
