@@ -13,3 +13,23 @@
       @apply text-lg;
     }
   }
+
+.scroll {
+    display: inline-block;
+    animation-name: scroll-text;
+    animation-duration: 15s;
+    animation-timing-function: linear;
+    animation-delay: 5s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+}
+
+@keyframes scroll-text {
+    20% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}

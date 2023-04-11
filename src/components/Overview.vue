@@ -68,8 +68,7 @@ export default {
         <loader></loader>
       </div>
       <div v-else>
-        <SonosGroup v-for="group in this.groups" :key="group.id" :group="group"
-          :selectedHoushold="this.selectedHousehold" />
+        <SonosGroup v-for="group in this.groups" :key="group.id" :group="group" />
         <div v-if="!this.groups || !this.groups.length" class="m-6">
           No Sonos speakers found
         </div>
