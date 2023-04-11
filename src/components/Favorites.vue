@@ -13,15 +13,15 @@
                                     alt="Favorite Image">
                             </div>
                             <div class="basis-1/3">
-                            <div class="flex flex-col">
-                                <div id="text-start" >
-                                    {{ favorite.name }}
-                                </div>
-                                <div class="text-slate-500">
-                                    {{ favorite.service.name }}
+                                <div class="flex flex-col">
+                                    <div id="text-start">
+                                        {{ favorite.name }}
+                                    </div>
+                                    <div class="text-slate-500">
+                                        {{ favorite.service.name }}
+                                    </div>
                                 </div>
                             </div>
-</div>
                             <div class="basis-1/3 md:basis-1/3 w-full mx-auto">
                                 <button @click="showGroupModal(favorite.id)">
                                     <svg xmlns="http://www.w3.org/2000/svg"
@@ -37,15 +37,20 @@
             </div>
             <div id="groupModal" class="modal fixed hidden z-10 top-0 left-0 w-full h-full overflow-auto bg-black/70">
                 <div
-                    class="modal-content fixed bottom-0 bg-slate-100 dark:bg-slate-800 lg:w-1/2 lg:left-1/4 lg:right-1/4 w-full pt-3 pb-1">
+                    class="modal-content fixed bottom-0 bg-slate-100 dark:bg-slate-800 lg:w-1/2 lg:left-1/4 lg:right-1/4 w-full pt-3 pb-7">
                     <div class="modal-body">
                         <h2 class="font-semibold pb-1">Select Group</h2>
-                        <div v-for="group in this.groups">
-                            <button @click="playFavorite(group.id)"
-                                class="text-gray-900 hover:text-gray-600 active:text-grey-700 dark:text-slate-100 dark:hover:text-slate-400 p-2">
-                                {{ group.name }}
-                            </button>
-                        </div>
+                        <template v-if="!loading">
+                            <div v-for="group in this.groups">
+                                <button @click="playFavorite(group.id)"
+                                    class="text-gray-900 hover:text-gray-600 active:text-grey-700 dark:text-slate-100 dark:hover:text-slate-400 p-2">
+                                    {{ group.name }}
+                                </button>
+                            </div>
+                        </template>
+                        <template v-else>
+                            <Loader></Loader>
+                        </template>
                     </div>
                 </div>
             </div>
@@ -55,13 +60,14 @@
 
 <script lang="ts">
 import Navigation from './Navigation.vue';
+import Loader from './Loader.vue';
 import ApiService from '../services/api.service';
 import { favoritesList, favoritesByType } from '../sonos/favorites';
 import { Group } from '../sonos/group';
 
 export default {
     name: "Favorites",
-    components: { Navigation },
+    components: { Navigation, Loader },
     data() {
         return {
             selectedHousehold: "",
@@ -69,6 +75,7 @@ export default {
             favoritesByType: {} as favoritesByType[],
             groups: [] as Array<Group>,
             selectedFavoriteId: 0,
+            loading: false
         }
     },
     async mounted() {
@@ -110,7 +117,9 @@ export default {
             }
         },
         async playFavorite(groupId: string) {
+            this.loading = true;
             await ApiService.playFavorite(groupId, this.selectedFavoriteId);
+            this.loading = false;
             const groupModal = document.getElementById("groupModal");
             if (groupModal) {
                 groupModal.style.display = "none";
@@ -184,5 +193,4 @@ export default {
         opacity: 1
     }
 }
-
 </style>
