@@ -4,7 +4,7 @@ import { genericSonosRequest } from "./firebase.service";
 import { households } from "../sonos/household";
 import { GroupData } from "../sonos/group";
 import { favoritesList } from "../sonos/favorites";
-
+import { PlayModes, Playback } from "../sonos/playback";
 
 const ApiService = {
 
@@ -50,6 +50,29 @@ const ApiService = {
         })
         this.validateResponse(resp);
         return resp;
+    },
+
+    async getGroupPlayback(groupId: string): Promise<Playback> {
+        await AuthService.refreshToken();
+        const resp = await genericSonosRequest({
+            url: `/control/api/v1/groups/${groupId}/playback`,
+            method: "GET",
+            accessToken: TokenService.getToken(),
+        })
+        this.validateResponse(resp);
+        return <Playback>resp.data;
+    },
+
+    async setPlayModes(groupId: string, playModes: PlayModes) {
+        await AuthService.refreshToken();
+        const resp = await genericSonosRequest({
+            url: `/control/api/v1/groups/${groupId}/playback/playMode`,
+            method: "Post",
+            body: `{"playModes": ${JSON.stringify(playModes)}}`,
+            accessToken: TokenService.getToken(),
+        })
+        this.validateResponse(resp);
+        return <Playback>resp.data;
     },
 
     async setRelativeVolume(groupId: string, volumeDelta: number) {

@@ -124,7 +124,7 @@ export default {
                 </div>
                 <div v-if="(loading && !playPauseAction) || (!container && loading)">
                     <div class="animate-pulse flex space-x-4">
-                        <div class="rounded-full mx-auto lg:w-32 lg:h-32 bg-slate-200 dark:bg-slate-700 h-24 w-24">
+                        <div class="rounded-full mx-auto lg:w-30 lg:h-30 bg-slate-200 dark:bg-slate-700 h-24 w-24">
                         </div>
                     </div>
                 </div>
@@ -167,7 +167,7 @@ export default {
                 </div>
             </div>
             <!-- Controls -->
-            <div class="basis-full md:basis-1/3 lg:basis-1/6">
+            <div class="basis-full md:basis-1/3 lg:basis-1/6 pt-2 md:lg:pt-0">
                 <div class="flex md:flex-col h-max justify-center items-center gap-x-3">
                     <template v-if="loading">
                         <loader></loader>
