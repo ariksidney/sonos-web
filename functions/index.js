@@ -12,7 +12,7 @@ exports.genericSonosRequest = functions.region('europe-west2').https.onCall((dat
   const options = {
     hostname: "api.ws.sonos.com",
     port: 443,
-    path: url,
+    path: encodeURI(url),
     method: method.toUpperCase(),
     headers: {
       "Content-Type": "application/json",
@@ -61,6 +61,7 @@ function doRequest(options, data) {
     });
 
     req.on("error", (err) => {
+      console.error('An error occurred: ', err);
       reject(err);
     });
 
