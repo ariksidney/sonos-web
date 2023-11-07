@@ -69,19 +69,19 @@ export default {
             </button>
 
             <span class="dropdown contents">
-                <button @click="showMenu" class="dropdown justify-self-start">
+                <button @click="showMenu" class="dropdown justify-self-start" tabindex="0">
                     <svg xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 96 960 960" width="40"
                         class="inline align-middle fill-black dark:fill-white dark:hover:fill-violet-400 dark:active:fill-violet-500 hover:fill-violet-500 active:fill-violet-600">
                         <path
                             d="M479.906 896q-24.239 0-41.406-17.261-17.166-17.261-17.166-41.499 0-24.239 17.261-41.406 17.261-17.166 41.499-17.166 24.239 0 41.406 17.261 17.166 17.261 17.166 41.499 0 24.239-17.261 41.405Q504.144 896 479.906 896Zm0-261.334q-24.239 0-41.406-17.261-17.166-17.261-17.166-41.499 0-24.239 17.261-41.406 17.261-17.166 41.499-17.166 24.239 0 41.406 17.261 17.166 17.261 17.166 41.499 0 24.239-17.261 41.406-17.261 17.166-41.499 17.166Zm0-261.334q-24.239 0-41.406-17.261-17.166-17.261-17.166-41.499 0-24.239 17.261-41.405Q455.856 256 480.094 256q24.239 0 41.406 17.261 17.166 17.261 17.166 41.499 0 24.239-17.261 41.406-17.261 17.166-41.499 17.166Z" />
                     </svg>
                 </button>
-                <div
-                    class="opacity-0 invisible dropdown-menu transition-all duration-300 transform origin-top-right -translate-y-2 scale-95">
+                <div class="opacity-0 invisible dropdown-menu transition-all duration-300 transform origin-top-right -translate-y-2 scale-95"
+                    tabindex="0">
                     <div class="absolute right-0 w-40 mt-2 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
-                        aria-labelledby="menu-button-1" id="menu-items-117" role="menu">
-                        <div class="py-1">
-                            <span v-if="this.playback?.availablePlaybackActions?.canShuffle">
+                        aria-labelledby="menu-button-1" id="menu-items-117" role="menu" tabindex="0">
+                        <div class="py-1" tabindex="0">
+                            <span v-if="this.playback?.availablePlaybackActions?.canShuffle" tabindex="0">
                                 <a href="javascript:void(0)" @click="toggleShuffe(this.playback.playModes.shuffle)"
                                     tabindex="0" v-bind:class="{
                                         'text-violet-600': this.playback?.playModes?.shuffle,
@@ -98,9 +98,10 @@ export default {
                                 </a>
                             </span>
                             <span v-if="this.playback?.availablePlaybackActions?.canRepeat">
-                                <a href="javascript:void(0)" @click="toggleRepeat(this.playback.playModes.repeat)" tabindex="1" v-bind:class="{
-                                    'text-violet-600': this.playback?.playModes?.repeat,
-                                }" class="text-gray-700 flex items-center w-full px-4 py-2 text-sm leading-5 text-left"
+                                <a href="javascript:void(0)" @click="toggleRepeat(this.playback.playModes.repeat)"
+                                    tabindex="1" v-bind:class="{
+                                        'text-violet-600': this.playback?.playModes?.repeat,
+                                    }" class="text-gray-700 flex items-center w-full px-4 py-2 text-sm leading-5 text-left"
                                     role="menuitem">
                                     <svg xmlns="http://www.w3.org/2000/svg"
                                         v-bind:class="{ 'fill-violet-600': this.playback?.playModes?.repeat }" height="24"
@@ -147,4 +148,5 @@ export default {
     opacity: 1;
     transform: translate(0) scale(1);
     visibility: visible;
-}</style>
+}
+</style>
