@@ -116,6 +116,19 @@ const ApiService = {
         this.validateResponse(resp);
     },
 
+    async setGroupMembers(groupId: string, playerIds: string[]) {
+      await AuthService.refreshToken();
+      const resp = await genericSonosRequest({
+        url: `/control/api/v1/groups/${groupId}/groups/setGroupMembers`,
+        method: "POST",
+        body: `{
+          "playerIds": [${playerIds.map(i => `"${i}"`).join(',')}]
+        }`,
+        accessToken: TokenService.getToken(),
+      })
+      this.validateResponse(resp);
+    },
+
     validateResponse(response: object) {
         if (response['data']['fault']) {
             AuthService.signOut();

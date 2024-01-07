@@ -12,6 +12,7 @@ export default {
     components: { Alert, Loader, Music, Audiobook, Podcast, Station, AudioControls },
     name: "SonosGroup",
     props: ['group'],
+    emits: ["change-group"],
     data() {
         return {
             selectedHousehold: '',
@@ -102,7 +103,15 @@ export default {
 
 <template>
     <figure class="md:container mb-4 bg-slate-100 rounded-xl p-4 md:p-6 pt-6 dark:bg-slate-800 shadow-grey-800 shadow-md">
-        <h2 class="font-semibold">{{ group.name }}</h2>
+        <div class="flex flex-row">
+          <div class="basis-full justify-center">
+            <h2 class="font-semibold">{{ group.name }}</h2>
+          </div>
+          <!-- Sonos Groups -->
+          <button @click="$emit('change-group', group.id)" class="justify-end">
+            <svg xmlns="http://www.w3.org/2000/svg" class="fill-black dark:fill-white dark:hover:fill-violet-400 dark:active:fill-violet-500 hover:fill-violet-500 active:fill-violet-600" height="24" viewBox="0 -960 960 960" width="24"><path d="M400-280h360v-560H400v560Zm0 80q-33 0-56.5-23.5T320-280v-560q0-33 23.5-56.5T400-920h360q33 0 56.5 23.5T840-840v560q0 33-23.5 56.5T760-200H400Zm180-460q25 0 42.5-17.5T640-720q0-25-17.5-42.5T580-780q-25 0-42.5 17.5T520-720q0 25 17.5 42.5T580-660Zm0 340q58 0 99-41t41-99q0-58-41-99t-99-41q-58 0-99 41t-41 99q0 58 41 99t99 41Zm0-80q-25 0-42.5-17.5T520-460q0-25 17.5-42.5T580-520q25 0 42.5 17.5T640-460q0 25-17.5 42.5T580-400Zm60 360H240q-33 0-56.5-23.5T160-120v-640h80v640h400v80ZM400-840v560-560Z"/></svg>
+          </button>
+        </div>
         <div class="flex flex-row flex-wrap items-center pt-2">
             <!-- Picture -->
             <div class="basis-1/3 md:basis-1/3 lg:basis-1/6">

@@ -12,9 +12,10 @@ A quickly hacked together webapp to control your Sonos system from anywhere - no
 * Skip to next track
 * Change volume
 * List and play Sonos favorites
+* Alter Sonos groups
 
 All the rest is (not yet) implemented.
 
-I just tested it with Spotify, Soundcloud and Audible. My System is fairly simple (1x Sonos One, 1x Sonos AMP, but not connected to a TV) so I'm not sure how it scales with more complex systems. If you have problems, feel free to open an issue.
+I just tested it with Spotify, Soundcloud and Audible. My System is fairly simple (1x Sonos One, 1x Sonos AMP (not connected to a TV) and 1x Ikea Symfonisk) so I'm not sure how it scales with more complex systems. If you have problems, feel free to open an issue.
 
 As Firebase Functions are used as a backend and to save some calls, the Sonos Groups are not automatically updated.
