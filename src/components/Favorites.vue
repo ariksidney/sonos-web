@@ -2,6 +2,10 @@
     <div class="flex flex-col md:flex-row">
         <navigation></navigation>
         <main class="text-slate-900 dark:text-white w-full pr-4 pl-4 pb-4 md:p-4">
+          <div v-if="this.selectedHousehold === ''">
+            No household selected
+          </div>
+          <div v-else>
             <div v-for="(value, name) in this.favoritesByType">
                 <figure
                     class="md:container mb-4 bg-slate-100 rounded-xl p-4 md:p-6 pt-6 dark:bg-slate-800 shadow-grey-800 shadow-md">
@@ -54,6 +58,7 @@
                     </div>
                 </div>
             </div>
+          </div>
         </main>
     </div>
 </template>
