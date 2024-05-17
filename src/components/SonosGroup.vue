@@ -4,12 +4,13 @@ import Alert from './Alert.vue';
 import Loader from './Loader.vue';
 import Music from './audioTypes/Music.vue'
 import Audiobook from './audioTypes/Audiobook.vue'
+import HomeTheater from './audioTypes/HomeTheater.vue'
 import Podcast from './audioTypes/Podcast.vue'
 import Station from './audioTypes/Station.vue'
 import AudioControls from './AudioControls.vue';
 
 export default {
-    components: { Alert, Loader, Music, Audiobook, Podcast, Station, AudioControls },
+    components: { Alert, Loader, Music, Audiobook, Podcast, Station, AudioControls, HomeTheater },
     name: "SonosGroup",
     props: ['group'],
     emits: ["change-group"],
@@ -153,6 +154,9 @@ export default {
                     </div>
                     <div v-else-if="container.container.type === 'station'">
                         <Station :container="container" />
+                    </div>
+                    <div v-else-if="container.container.type.startsWith('linein.homeTheater')">
+                        <HomeTheater :container="container" />
                     </div>
                     <div v-else>
                          <!-- Type not yet supported, try with Music -->
